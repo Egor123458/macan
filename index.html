@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- НАСТРОЙКИ ЦВЕТОВ И БАЗЫ --- */
+        /* --- БАЗА --- */
         :root {
             --accent-color: #ff1744; 
             --text-color: #ffffff;
@@ -15,27 +15,20 @@
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+            margin: 0; padding: 0; height: 100%;
             font-family: 'Montserrat', sans-serif;
-            color: var(--text-color);
-            overflow-x: hidden; 
+            color: var(--text-color); overflow-x: hidden; 
         }
 
-        /* --- ИНТРО ПРЕВЬЮ (ТЕПЕРЬ ОНО ПОВЕРХ ВСЕГО) --- */
+        /* --- ИНТРО --- */
         .intro-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #000;
-            display: flex; justify-content: center; align-items: center;
-            z-index: 11000; /* Поставили слой выше капчи, чтобы заставка была первой */
-            animation: fadeOutIntro 1.5s ease-in-out 2.5s forwards; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; display: flex; justify-content: center; align-items: center;
+            z-index: 11000; animation: fadeOutIntro 1.5s ease-in-out 2.5s forwards; 
         }
         .intro-text {
             font-size: 3rem; font-weight: 900; letter-spacing: 5px; color: transparent;
-            -webkit-text-stroke: 2px var(--accent-color); 
-            text-transform: uppercase;
+            -webkit-text-stroke: 2px var(--accent-color); text-transform: uppercase;
             animation: pulseNeon 2s infinite alternate;
         }
         @keyframes fadeOutIntro { to { opacity: 0; visibility: hidden; } }
@@ -45,109 +38,61 @@
         }
 
         /* --- КАПЧА VAG vs BMW --- */
-        body.locked {
-            overflow: hidden; 
-        }
-        
+        body.locked { overflow: hidden; }
         .captcha-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.90); 
-            z-index: 10000; /* Капча под заставкой, но над сайтом */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(15px);
-            transition: opacity 0.5s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.90); z-index: 10000; 
+            display: flex; justify-content: center; align-items: center;
+            backdrop-filter: blur(15px); transition: opacity 0.5s ease;
         }
         .captcha-box {
-            background: #fff;
-            padding: 10px;
-            border-radius: 3px;
-            width: 350px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            font-family: Arial, sans-serif; 
-            color: #333;
+            background: #fff; padding: 10px; border-radius: 3px;
+            width: 350px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            font-family: Arial, sans-serif; color: #333;
         }
         .captcha-header {
-            background: #1a73e8; 
-            color: #fff;
-            padding: 20px;
-            margin: -10px -10px 10px -10px;
-            border-radius: 3px 3px 0 0;
+            background: #1a73e8; color: #fff; padding: 20px;
+            margin: -10px -10px 10px -10px; border-radius: 3px 3px 0 0;
         }
         .captcha-header h3 { margin: 0; font-size: 1.2rem; font-weight: normal; line-height: 1.4;}
         .captcha-header h3 strong { font-size: 1.6rem; font-weight: bold; }
-        .captcha-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
+        .captcha-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 10px; }
         .captcha-item {
-            position: relative;
-            cursor: pointer;
-            border: 4px solid transparent;
-            height: 120px;
-            background-color: #eee;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.1s;
+            position: relative; cursor: pointer; border: 4px solid transparent;
+            height: 120px; background-color: #eee; background-size: cover;
+            background-position: center; transition: transform 0.1s;
         }
         
-        /* КАРТИНКИ ДЛЯ КАПЧИ */
+        /* КАРТИНКИ КАПЧИ */
         #car-skoda  { background-image: url('octavia.webp'); }
         #car-passat { background-image: url('passat_b5.webp'); }
         #car-audi   { background-image: url('audi.webp'); }
         #car-bmw    { background-image: url('bmw.webp'); }
 
-        .captcha-item.selected {
-            border-color: #1a73e8;
-            transform: scale(0.92);
-        }
+        .captcha-item.selected { border-color: #1a73e8; transform: scale(0.92); }
         .captcha-item.selected::after {
-            content: '✔';
-            position: absolute;
-            top: 5px; right: 5px;
-            background: #1a73e8;
-            color: white;
-            border-radius: 50%;
-            width: 25px; height: 25px;
-            display: flex; justify-content: center; align-items: center;
+            content: '✔'; position: absolute; top: 5px; right: 5px;
+            background: #1a73e8; color: white; border-radius: 50%;
+            width: 25px; height: 25px; display: flex; justify-content: center; align-items: center;
             font-size: 14px; font-weight: bold;
         }
         .captcha-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 10px;
-            border-top: 1px solid #ccc;
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 10px; border-top: 1px solid #ccc;
         }
         .captcha-error { color: #d32f2f; font-weight: bold; font-size: 0.85rem; max-width: 200px;}
         .verify-btn {
-            background: #1a73e8;
-            color: #fff;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 3px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
+            background: #1a73e8; color: #fff; border: none; padding: 12px 25px;
+            border-radius: 3px; font-weight: bold; cursor: pointer; text-transform: uppercase;
         }
         .verify-btn:hover { background: #1557b0; }
 
-        /* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
+        /* --- ФОН И БЕГУЩАЯ СТРОКА --- */
         .bg-image {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('i.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-            filter: brightness(0.6); 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('i.jpg'); background-size: cover; background-position: center;
+            z-index: -1; filter: brightness(0.6); 
         }
-
-        /* --- БЕГУЩАЯ СТРОКА --- */
         .ticker-wrap {
             position: absolute; top: 0; width: 100%;
             background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px);
@@ -160,84 +105,91 @@
         }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- ОСНОВНОЙ КОНТЕЙНЕР --- */
+        /* --- ЦЕНТРАЛЬНЫЙ КОНТЕЙНЕР --- */
         .main-content {
-            max-width: 1100px; margin: 80px auto 0; padding: 40px 20px;
+            max-width: 800px; 
+            margin: 80px auto 0; padding: 40px 20px;
             opacity: 0; animation: fadeInContent 1.5s ease-out 3s forwards; 
+            display: flex; flex-direction: column; gap: 40px;
         }
         @keyframes fadeInContent { to { opacity: 1; } }
 
-        /* --- ГЕРОЙ-БЛОК --- */
-        .hero-section { text-align: center; margin-bottom: 60px; text-shadow: 0 5px 15px rgba(0,0,0,0.8); }
-        h1.hero-title { font-size: 5rem; font-weight: 900; margin: 0; line-height: 1; text-transform: uppercase; letter-spacing: -2px; color: #fff; }
-        .hero-subtitle { font-size: 1.2rem; color: var(--accent-color); letter-spacing: 3px; margin-top: 10px; font-weight: 700; }
+        .hero-section { text-align: center; text-shadow: 0 5px 15px rgba(0,0,0,0.8); }
+        h1.hero-title { font-size: 4rem; font-weight: 900; margin: 0; line-height: 1; text-transform: uppercase; letter-spacing: -2px; color: #fff; }
 
-        /* --- СЕКЦИЯ С ПЛЕЕРОМ И ТЕКСТОМ --- */
-        .split-section { display: flex; flex-wrap: wrap; gap: 50px; align-items: center; justify-content: center; margin-bottom: 80px; }
-        .left-block-visual { flex: 1 1 400px; max-width: 500px; }
-        
+        /* --- КОМПАКТНЫЙ ПЛЕЕР --- */
         .album-cover-container {
-            position: relative; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8); transition: transform 0.3s ease;
-        }
-        .album-cover-container:hover { transform: scale(1.02); }
-        .album-cover-container::before {
-            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, var(--accent-color), transparent, var(--accent-color));
-            z-index: -1; filter: blur(10px); opacity: 0.7;
+            border-radius: 15px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* --- ЭФФЕКТ СТЕКЛА ДЛЯ ТЕКСТОВЫХ БЛОКОВ --- */
-        .right-block-text, .merits-section {
-            background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        /* --- БЛОКИ ТЕКСТА (СТЕКЛО) --- */
+        .glass-block {
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
         }
-        .right-block-text { flex: 1 1 400px; }
-        h2 { font-size: 2rem; color: var(--accent-color); margin-top: 0; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-        p { font-size: 1.1rem; line-height: 1.7; color: var(--secondary-text); text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
-        strong { color: #fff; }
+        .glass-block h2 { font-size: 2.2rem; color: var(--accent-color); margin-top: 0; text-transform: uppercase; }
+        .glass-block p { font-size: 1.1rem; line-height: 1.7; color: var(--secondary-text); text-shadow: 0 1px 3px rgba(0,0,0,0.8); margin-bottom: 20px; }
+        .glass-block strong { color: #fff; }
 
-        /* --- КНОПКИ (ТЕПЕРЬ ИХ ДВЕ) --- */
-        .action-buttons {
-            display: flex;
-            gap: 15px; /* Расстояние между кнопками */
-            flex-wrap: wrap;
-            margin-top: 25px;
+        /* --- ТЕЛЕГРАМ КАЗИНО --- */
+        .tg-message {
+            background-color: #2b5278; border-radius: 15px;
+            padding: 20px; margin: 0 auto; width: 100%; max-width: 400px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); text-align: center;
+            box-sizing: border-box;
         }
+        
+        .slot-machine {
+            display: flex; gap: 10px; background: #182533; padding: 15px;
+            border-radius: 10px; font-size: 3rem; border: 2px solid #111;
+            box-shadow: inset 0 0 15px #000; justify-content: center;
+        }
+        .slot { width: 50px; text-align: center; display: inline-block; }
+        
+        .spin-btn {
+            display: block; width: 100%; margin-top: 20px;
+            background: #ff1744; color: #fff; border: none; padding: 15px;
+            font-weight: 900; border-radius: 8px; cursor: pointer; text-transform: uppercase;
+            transition: 0.3s; font-family: 'Montserrat', sans-serif;
+        }
+        .spin-btn:active { transform: scale(0.95); }
+        .spin-btn:disabled { background: #555; cursor: not-allowed; }
+        
+        .spin-result { text-align: center; margin-top: 10px; font-weight: bold; min-height: 20px; font-size: 1em; }
 
+        /* Кнопка займа внутри казика (изначально скрыта) */
+        .casino-loan-btn {
+            display: none; width: 100%; margin-top: 20px; box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.6); color: var(--accent-color); 
+            border: 2px solid var(--accent-color); padding: 15px;
+            font-weight: 900; border-radius: 8px; cursor: pointer; 
+            text-transform: uppercase; text-decoration: none; font-family: 'Montserrat', sans-serif;
+            transition: 0.3s;
+        }
+        .casino-loan-btn:hover { background-color: var(--accent-color); color: #fff; }
+
+        /* --- КНОПКИ ДЕЙСТВИЯ (ВНЕ КАЗИКА) --- */
+        .action-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
         .btn {
             display: inline-block; padding: 15px 30px; background-color: var(--accent-color);
             color: #fff; text-transform: uppercase; font-weight: 900; text-decoration: none;
             border-radius: 50px; letter-spacing: 1px; transition: all 0.3s ease;
-            box-shadow: 0 10px 20px -10px rgba(255, 23, 68, 0.5); 
-            border: 2px solid var(--accent-color);
-            cursor: pointer; text-align: center;
+            box-shadow: 0 10px 20px -10px rgba(255, 23, 68, 0.5); border: 2px solid var(--accent-color);
         }
         .btn:hover { background-color: #fff; color: var(--accent-color); box-shadow: 0 15px 30px -10px rgba(255, 255, 255, 0.5); transform: translateY(-3px); }
 
-        /* Вторая кнопка (Микрозайм) */
-        .btn-secondary {
-            background-color: rgba(0, 0, 0, 0.4); 
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-            box-shadow: none;
-        }
-        .btn-secondary:hover {
-            background-color: var(--accent-color); 
-            color: #fff;
-        }
-
-        /* --- ЗАСЛУГИ И ФУТЕР --- */
-        .merits-section { text-align: left; margin-top: 40px; }
-        .merits-section ul { list-style: none; padding: 0; }
-        .merits-section li { margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+        /* --- ЗАСЛУГИ --- */
+        .merits-section { text-align: left; }
+        .merits-section ul { list-style: none; padding: 0; margin: 0;}
+        .merits-section li { margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: center; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
         .merits-section li::before { content: '🐺'; margin-right: 15px; font-size: 1.5rem; }
-        .merits-section a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s; }
-        .merits-section a:hover { border-bottom-color: var(--accent-color); }
 
         footer {
-            text-align: center; margin-top: 80px; padding: 40px 0; color: #aaa; font-size: 0.9em;
+            text-align: center; margin-top: 40px; padding: 40px 0; color: #aaa; font-size: 0.9em;
             border-top: 1px solid rgba(255,255,255,0.1); text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
         .footer-quote { font-size: 1.5rem; color: #fff; font-style: italic; margin-bottom: 20px; display: block; }
@@ -254,14 +206,12 @@
             <div class="captcha-header">
                 <h3>Выберите все картинки, где есть<br><strong>НОРМАЛЬНЫЕ МАШИНЫ</strong></h3>
             </div>
-            
             <div class="captcha-grid">
                 <div class="captcha-item" data-type="vag" id="car-skoda"></div>
                 <div class="captcha-item" data-type="vag" id="car-passat"></div>
                 <div class="captcha-item" data-type="vag" id="car-audi"></div>
                 <div class="captcha-item" data-type="bmw" id="car-bmw"></div>
             </div>
-
             <div class="captcha-footer">
                 <div id="captchaError" class="captcha-error"></div>
                 <button id="verifyBtn" class="verify-btn">Подтвердить</button>
@@ -270,52 +220,64 @@
     </div>
 
     <div class="bg-image"></div>
-
     <div class="ticker-wrap">
         <div class="ticker">🐺 ВОЛК СЛАБЕЕ ЛЬВА И ТИГРА, НО В ЦИРКЕ ОН НЕ ВЫСТУПАЕТ... СКОРОСТЬ 240... ЕСЛИ МЕНЯ НЕТ В СЕТИ, Я НА ТРАССЕ... АУФ... 🐺</div>
     </div>
 
     <div class="main-content">
+        
         <header class="hero-section">
             <h1 class="hero-title">MACAN. ГОЛОС УЛИЦ.</h1>
         </header>
 
-        <div class="split-section">
-            <div class="left-block-visual">
-                <div class="album-cover-container">
-                     <iframe frameborder="0" style="border:none;width:100%;height:450px;" width="100%" height="450" src="https://music.yandex.ru/iframe/#album/37458189"></iframe>
+        <div class="album-cover-container">
+            <iframe frameborder="0" style="border:none;width:100%;height:150px;" width="100%" height="150" src="https://music.yandex.ru/iframe/#track/128765036/32350465"></iframe>
+        </div>
+
+        <div class="glass-block">
+            <h2>ВРЕМЯ СОБИРАТЬ КАМНИ, БРАТ</h2>
+            <p>Жизнь — это не только ночные трассы и 240 на спидометре. Жизнь — это когда ты закинул последние 5000 рублей на красное, а выпал зеро. Здесь нет места слабости и задней передаче.</p>
+            <p>Этот сайт — твой чек-поинт перед главным выбором. Настоящий мужчина должен уметь держать удар: либо отыграть всё до копейки в слотах, либо надеть берцы и пойти топтать плац.</p>
+            
+            <div class="tg-message">
+                <h3 style="margin-top: 0; color: #ffb300; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">🎰 10 ФРИ СПИНОВ 🎰</h3>
+                
+                <div class="slot-machine">
+                    <div class="slot" id="slot1">🍒</div>
+                    <div class="slot" id="slot2">🍋</div>
+                    <div class="slot" id="slot3">🍉</div>
                 </div>
+                
+                <button id="spinBtn" class="spin-btn">Крутить (Осталось 10)</button>
+                
+                <div id="spinResult" class="spin-result">Заряжай деп, автомат дает!</div>
+                
+                <a href="https://moneyman.ru/lp/main/?partner=sravniru&utm_source=sravniru&utm_medium=affiliate&utm_campaign=sravniru_loan&clickid=def827af8a8437dd-91d9f9fb3123f99a-d663fffeac682f86-ab168b3a180d1b8a" target="_blank" class="casino-loan-btn" id="loanBtn">ВЗЯТЬ МИКРОЗАЙМ</a>
             </div>
 
-            <div class="right-block-text">
-                <h2>САЛАМ ВСЕМ СВОИМ.</h2>
-                <p>Если ты зашел сюда, значит, ты знаешь цену словам. Это не сайт, а <strong>МОТИВАЦИЯ ДЛЯ ДЕПА</strong>.</p>
-                <p>Ниже ты видишь главную кнопку. Настоящий мужчина должен денуть все и отслужить</p>
-                
-                <div class="action-buttons">
-                    <a href="https://xn--80aneakq5ade5a9a.xn--p1ai/" target="_blank" class="btn">СЛУЖИТЬ ОТЕЧЕСТВУ</a>
-                    <a href="https://moneyman.ru/lp/main/?partner=sravniru&utm_source=sravniru&utm_medium=affiliate&utm_campaign=sravniru_loan&clickid=def827af8a8437dd-91d9f9fb3123f99a-d663fffeac682f86-ab168b3a180d1b8a" target="_blank" class="btn btn-secondary">ВЗЯТЬ МИКРОЗАЙМ</a>
-                </div>
-
+            <div class="action-buttons">
+                <a href="https://xn--80aneakq5ade5a9a.xn--p1ai/" target="_blank" class="btn">СЛУЖИБА ПО КОНТРАКТУ</a>
             </div>
         </div>
 
-        <div class="merits-section">
-            <h2>ЗАСЛУГИ:</h2>
+        <div class="glass-block merits-section">
+            <h2 style="text-align: left; margin-bottom: 20px;">ПАТЦАНСКИЕ ЗАСЛУГИ:</h2>
             <ul>
-                <li>Пошел служить</li>
-                <li>Выпустил альбом BRATLEND</li>
-                <li>Купил BMW M5 COMPETITION</li>
+                <li>Сделал 240 по Кутузовскому (в кредит на 5 лет)</li>
+                <li>Отыгрался с 500 рублей до 50 копеек за вечер</li>
+                <li>Знает наизусть горячую линию всех микрозаймов</li>
+                <li>Доказал, что Волк в цирке не выступает, пройдя медкомиссию в военкомате</li>
             </ul>
         </div>
 
         <footer>
-            <span class="footer-quote">"Обнял. Приподнял. Затонировал."</span>
+            <span class="footer-quote">"Обнял. Приподнял. Депнул. Проиграл."</span>
             (с) Цитаты великих. 2026.
         </footer>
     </div>
 
     <script>
+        // --- ЛОГИКА КАПЧИ ---
         const items = document.querySelectorAll('.captcha-item');
         const verifyBtn = document.getElementById('verifyBtn');
         const errorText = document.getElementById('captchaError');
@@ -346,7 +308,6 @@
             } else if (vagCount === 3) {
                 errorText.style.color = "green";
                 errorText.innerText = "VAG сила! Проходи, брат.";
-                
                 setTimeout(() => {
                     overlay.style.opacity = '0';
                     setTimeout(() => {
@@ -358,6 +319,80 @@
                 errorText.style.color = "#d32f2f";
                 errorText.innerText = "Ты не все нормальные машины выбрал. Присмотрись!";
             }
+        });
+
+        // --- ЛОГИКА ТЕЛЕГРАМ КАЗИНО (10 СПИНОВ) ---
+        const spinBtn = document.getElementById('spinBtn');
+        const slot1 = document.getElementById('slot1');
+        const slot2 = document.getElementById('slot2');
+        const slot3 = document.getElementById('slot3');
+        const spinResult = document.getElementById('spinResult');
+        const loanBtn = document.getElementById('loanBtn');
+
+        const emojis = ['🍒', '🍋', '🍉', '🐺', '💸', '🚔'];
+        
+        // Массив фраз для байта
+        const baits = [
+            "Брат, почти! Ща точно навалит!",
+            "Рядом! Еще чуть-чуть, газуй!",
+            "Автомат греется, крути еще!",
+            "Один символ не доехал, давай!",
+            "Отдача близко, я чую!"
+        ];
+
+        let attemptsLeft = 10;
+
+        spinBtn.addEventListener('click', () => {
+            if (attemptsLeft <= 0) return;
+
+            spinBtn.disabled = true;
+            spinResult.style.color = "#aaa";
+            spinResult.innerText = "Крутим барабаны...";
+
+            let spins = 0;
+            const spinInterval = setInterval(() => {
+                slot1.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                slot2.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                slot3.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                spins++;
+
+                if (spins > 20) {
+                    clearInterval(spinInterval);
+                    attemptsLeft--;
+                    
+                    if (attemptsLeft > 0) {
+                        // Обычный спин: байт-фраза и случайные (но не джекпот) символы
+                        let e1 = emojis[Math.floor(Math.random() * emojis.length)];
+                        let e2 = emojis[Math.floor(Math.random() * emojis.length)];
+                        let e3 = emojis[Math.floor(Math.random() * emojis.length)];
+                        
+                        // Делаем так, чтобы случайно не выпали три одинаковых (чтобы не было победы)
+                        while(e1 === e2 && e2 === e3) {
+                            e3 = emojis[Math.floor(Math.random() * emojis.length)];
+                        }
+
+                        slot1.innerText = e1;
+                        slot2.innerText = e2;
+                        slot3.innerText = e3;
+
+                        spinResult.style.color = "#ffb300";
+                        // Берем случайную фразу из массива baits
+                        spinResult.innerText = baits[Math.floor(Math.random() * baits.length)];
+                        spinBtn.innerText = `КРУТИТЬ (Осталось ${attemptsLeft})`;
+                        spinBtn.disabled = false;
+                    } 
+                    else {
+                        // Последний спин: Полный слив
+                        slot1.innerText = '❌'; slot2.innerText = '❌'; slot3.innerText = '❌';
+                        spinResult.style.color = "#ff1744";
+                        spinResult.innerHTML = "ФРИ СПИНЫ СЛИТЫ В НОЛЬ.<br>МАШИНА УХОДИТ ЗА ДОЛГИ.";
+                        
+                        // Прячем кнопку крутить и показываем кнопку микрозайма
+                        spinBtn.style.display = "none";
+                        loanBtn.style.display = "inline-block";
+                    }
+                }
+            }, 80);
         });
     </script>
 </body>
