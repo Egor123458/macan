@@ -198,14 +198,35 @@
         p { font-size: 1.1rem; line-height: 1.7; color: var(--secondary-text); text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
         strong { color: #fff; }
 
-        /* --- КНОПКИ --- */
+        /* --- КНОПКИ (ТЕПЕРЬ ИХ ДВЕ) --- */
+        .action-buttons {
+            display: flex;
+            gap: 15px; /* Расстояние между кнопками */
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
         .btn {
-            display: inline-block; padding: 15px 35px; background-color: var(--accent-color);
+            display: inline-block; padding: 15px 30px; background-color: var(--accent-color);
             color: #fff; text-transform: uppercase; font-weight: 900; text-decoration: none;
-            border-radius: 50px; letter-spacing: 2px; transition: all 0.3s ease;
-            box-shadow: 0 10px 20px -10px rgba(255, 23, 68, 0.5); border: none; cursor: pointer; margin-top: 20px;
+            border-radius: 50px; letter-spacing: 1px; transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -10px rgba(255, 23, 68, 0.5); 
+            border: 2px solid var(--accent-color);
+            cursor: pointer; text-align: center;
         }
         .btn:hover { background-color: #fff; color: var(--accent-color); box-shadow: 0 15px 30px -10px rgba(255, 255, 255, 0.5); transform: translateY(-3px); }
+
+        /* Вторая кнопка (Микрозайм) */
+        .btn-secondary {
+            background-color: rgba(0, 0, 0, 0.4); 
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            box-shadow: none;
+        }
+        .btn-secondary:hover {
+            background-color: var(--accent-color); 
+            color: #fff;
+        }
 
         /* --- ЗАСЛУГИ И ФУТЕР --- */
         .merits-section { text-align: left; margin-top: 40px; }
@@ -270,7 +291,12 @@
                 <h2>САЛАМ ВСЕМ СВОИМ.</h2>
                 <p>Если ты зашел сюда, значит, ты знаешь цену словам. Это не сайт, а <strong>МОТИВАЦИЯ ДЛЯ ДЕПА</strong>.</p>
                 <p>Ниже ты видишь главную кнопку. Настоящий мужчина должен денуть все и отслужить</p>
-                <a href="https://xn--80aneakq5ade5a9a.xn--p1ai/" target="_blank" class="btn">СЛУЖИТЬ ОТЕЧЕСТВУ</a>
+                
+                <div class="action-buttons">
+                    <a href="https://xn--80aneakq5ade5a9a.xn--p1ai/" target="_blank" class="btn">СЛУЖИТЬ ОТЕЧЕСТВУ</a>
+                    <a href="https://moneyman.ru/lp/main/?partner=sravniru&utm_source=sravniru&utm_medium=affiliate&utm_campaign=sravniru_loan&clickid=def827af8a8437dd-91d9f9fb3123f99a-d663fffeac682f86-ab168b3a180d1b8a" target="_blank" class="btn btn-secondary">ВЗЯТЬ МИКРОЗАЙМ</a>
+                </div>
+
             </div>
         </div>
 
